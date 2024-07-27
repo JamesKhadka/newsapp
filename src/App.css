@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.bg-white {
+  --bs-bg-opacity: 1;
+  background-color: rgb(221 111 111) !important;
+}
+
