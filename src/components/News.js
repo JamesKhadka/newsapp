@@ -41,15 +41,15 @@ const News = (props) => {
 
   },)
 
-  // const handlePrevClick = async () => {
-  //   setPage(page - 1)
-  //   updateNews();
-  // }
+  const handlePrevClick = async () => {
+    setPage(page - 1)
+    updateNews();
+  }
 
-  // const handleNextClick = async () => {
-  //   setPage(page + 1)
-  //   updateNews();
-  // }
+  const handleNextClick = async () => {
+    setPage(page + 1)
+    updateNews();
+  }
 
 
   // scrool bar fatching data
