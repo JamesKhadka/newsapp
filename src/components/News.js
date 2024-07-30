@@ -11,7 +11,7 @@ const News = (props) => {
   const [loading, setLoading] = useState([true])
   const [page, setPage] = useState(1)
   const [totalResults, setTotalResults] = useState(0)
-  //  document.title = `${capitalizeFirstLetter(props.category)} - CurrentWave`;
+
 
   const capitalizeFirstLetter = (string) => {
     return string[0].toUpperCase() + string.slice(1);
@@ -37,25 +37,16 @@ const News = (props) => {
 
   //componentDidMount is use to fetch data from web api
   useEffect(() => {
+    document.title = `${capitalizeFirstLetter(props.category)} - CurrentWave`;
     updateNews();
-
-  },)
-
-  const handlePrevClick = async () => {
-    setPage(page - 1)
-    updateNews();
-  }
-
-  const handleNextClick = async () => {
-    setPage(page + 1)
-    updateNews();
-  }
+    //eslint-disable-next-line
+  }, [])
 
 
   // scrool bar fatching data
   const fetchMoreData = async () => {
     setPage(page + 1)
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parseData = await data.json()
     setArticles(articles.concat(parseData.articles))
@@ -66,7 +57,7 @@ const News = (props) => {
   return (
     <>
 
-      <h1 className="text-center"><b>CurrentWaves -Todays Breaking News  From  {capitalizeFirstLetter(props.category)}: </b></h1>
+      <h1 className="text-center" style={{ margin: '35px 0px', matginTop: '90px' }}><b>CurrentWaves -Todays Breaking News  From  {capitalizeFirstLetter(props.category)}: </b></h1>
       {loading && <Spinner />}
       {/* infinite scrool bar  */}
 
@@ -86,13 +77,8 @@ const News = (props) => {
             })}
           </div>
         </div>
-
       </InfiniteScroll>
-
-
     </>
-
-
   )
 
 }
